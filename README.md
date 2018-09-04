@@ -70,24 +70,24 @@ https://codenvy.io/site/login
 ## codenvyでワークスペース作成
 
 - サイドバーからcreate workspaceを選択
-<img src="https://github.com/x-hack-git/messaging-api/blob/master/image/create_workspace.png" height="320px">
+<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/create_workspace.png" height="320px">
 
 ### STEP-1 STACKを選択する
 
 - 今回はNodeを選択してください
-<img src="https://github.com/x-hack-git/messaging-api/blob/master/image/select_node.png" height="320px">
+<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/select_node.png" height="320px">
 
 ### STEP-2 PROJECTSでGitURLを指定する
 
 - 以下のURLをコピペして貼り付けましょう
-`https://github.com/x-hack-git/messaging-api.git`
-<img src="https://github.com/x-hack-git/messaging-api/blob/master/image/select_repo.png" max-height="320px">
+`https://github.com/x-hack-git/line-messaging-api.git`
+<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/select_repo.png" max-height="320px">
 
 ### STEP-3 heroku CLI のインストール
 
 - 以下のコマンドを実行してみましょう
 `$ curl https://cli-assets.heroku.com/install.sh | sh`
-<img src="https://github.com/x-hack-git/messaging-api/blob/master/image/install_heroku_cli.png" height="320px">
+<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/install_heroku_cli.png" height="320px">
 
 # herokuと連携し、LINE Developersで取得した値をherokuにセットする
 
