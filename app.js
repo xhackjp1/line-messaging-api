@@ -58,7 +58,7 @@ app.post('/callback', function(req, res) {
 
     function(req, displayName, message_text) {
 
-      var message = "hello, " + displayName + "さん"; // helloと返事する
+      //var message = "hello, " + displayName + "さん"; // helloと返事する
       //sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
       
       //var message = message_text; // おうむ返しする
