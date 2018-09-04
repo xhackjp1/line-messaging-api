@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-  res.send('hello world');
+  res.send('<h1>hello world</h1>');
 });
 
 // async.waterfall([function(){}], function(){})
