@@ -3,7 +3,7 @@
 勉強会用のBOTソースコードです。
 
 今回作成するのは、自動で応答してくれるLINE BOTです</br>
-<img src="https://github.com/x-hack-git/messaging-api/blob/master/image/sample_image.gif" height="320px">
+<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/sample_image.gif" height="320px">
 
 # 必要なアカウント
 
