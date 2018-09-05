@@ -127,7 +127,9 @@ $ heroku config:set DATABASE_URL=""
 - [API reference](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/node.html?node#general-api)
 
 ## 準備
-### IBM Cloudのアカウント作成
+- IBM Cloudのアカウント作成
+  - a
+- `npm install --save watson-developer-cloud`
 
 ## 実行
 
