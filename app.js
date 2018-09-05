@@ -61,6 +61,7 @@ app.post('/callback', function(req, res) {
       var message = "hello, " + 　textcount(displayName); // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
+      sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
 
       //  var messages = ["左上を押した", "右上を押した", "左下を押した", "右下を押した"];
       //  if (message_text == "猫") {
