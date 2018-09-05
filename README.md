@@ -121,3 +121,13 @@ $ git push heroku master
 $ heroku config:set DATABASE_URL=""
 ```
 
+# 画像認識AIとの接続
+## 概要
+- [IBM Cloud Visual Recognition](https://console.bluemix.net/docs/services/visual-recognition/index.html#-)を使い、画像の種類を返すLINE BOTを作成します。
+- [API reference](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/node.html?node#general-api)
+
+## 準備
+### IBM Cloudのアカウント作成
+
+## 実行
+
