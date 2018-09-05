@@ -1,3 +1,7 @@
+# 動画による解説
+下記のリンク先動画で手順を再現しています<br>
+https://youtu.be/aByTfznhBWs
+
 # xhack-bot
 
 勉強会用のBOTソースコードです。
