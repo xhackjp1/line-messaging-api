@@ -2,12 +2,16 @@
 下記のリンク先動画で手順を再現しています<br>
 https://youtu.be/aByTfznhBWs
 
+---
+
 # xhack-bot
 
 勉強会用のBOTソースコードです。
 
 今回作成するのは、自動で応答してくれるLINE BOTです</br>
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/sample_image.gif" height="320px">
+
+---
 
 # 必要なアカウント
 
@@ -69,6 +73,8 @@ https://codenvy.io/site/login
 ### やること
 特になし
 
+---
+
 # codenvyでの作業
 
 ## codenvyでワークスペース作成
@@ -98,9 +104,13 @@ https://codenvy.io/site/login
 ```
 $ heroku login
 $ heroku git:remote -a [アプリ名]
-$ heroku config:set LINE_CHANNEL_SECRET=""
-$ heroku config:set LINE_CHANNEL_ACCESS_TOKEN=""
+$ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
+$ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
 ```
+
+---
+
+# 補足
 
 ### 天気APIを使う場合
 1. こちらでアカウント作成 → https://openweathermap.org/api
@@ -110,14 +120,24 @@ $ heroku config:set LINE_CHANNEL_ACCESS_TOKEN=""
 $ heroku config:set WEATHER_API_KEY=""
 ```
 
-# herokuにpushする
+# コードを修正してherokuにpushする
+
+gitの初期設定(一度だけ)
 ```
+$ git config user.name "Your Name"
+$ git config user.email "youremail@example.com"
+```
+
+herokuサーバーへのpush
+```
+$ git add .
+$ git commit -m "update"
 $ git push heroku master
 ```
 
 # heroku データベース接続
 
 ```
-$ heroku config:set DATABASE_URL=""
+$ heroku config:set DATABASE_URL="[herokuデータベースのURL]"
 ```
 
