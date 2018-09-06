@@ -30,7 +30,7 @@ visualRecognition.classify(params, function(err, response) {
     console.log(JSON.stringify(response['images'][0]['classifiers'][0]['classes'], null, 2))
 });
 
-exports.classify = function (images_file_buffer, message_id) {
+exports.classify = function (images_file_buffer) {
   // images_file = streamifier.createReadStream(images_file_buffer);
 
   var params = {

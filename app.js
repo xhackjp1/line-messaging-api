@@ -5,6 +5,7 @@ var request = require('request');
 var crypto = require("crypto");
 var async = require('async');
 const line = require('@line/bot-sdk')
+const Request = require('request');
 
 var sendMessage = require('./sendMessage.js');
 var messageTemplate = require('./messageTemplate.js');
@@ -113,22 +114,48 @@ app.post('/callback', function(req, res) {
       /////////////////
 
       if (message_type === 'image') {
-        const client = new line.Client({
-          channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
+
+        // const client = new line.Client({
+        //   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
+        // });
+
+        // client.getMessageContent(message_id)
+        //   .then((stream) => {
+        //     stream.on('data', (chunk) => {
+        //       // console.log(typeof chunk)
+        //       message = visualRecognition.classify(chunk, message_id)
+        //       sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
+        //     });
+        //     stream.on('error', (err) => {
+        //       // error handling
+        //       console.log('error on image')
+        //     });
+        //   });
+
+
+        const options = {
+            url: `https://api.line.me/v2/bot/message/${message_id}/content`,
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + process.env.LINE_CHANNEL_ACCESS_TOKEN,
+            },
+            encoding: null
+        };
+
+        Request(options, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                //保存
+                // fs.writeFileSync(`./image.jpg`, new Buffer(body), 'binary');
+                console.log('Got responce');
+                message = visualRecognition.classify(body)
+                sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
+            } else {
+                // @todo handle error
+            }
         });
 
-        client.getMessageContent(message_id)
-          .then((stream) => {
-            stream.on('data', (chunk) => {
-              // console.log(typeof chunk)
-              message = visualRecognition.classify(chunk, message_id)
-              sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
-            });
-            stream.on('error', (err) => {
-              // error handling
-              console.log('error on image')
-            });
-          });
+
+
       }
 
       return;
