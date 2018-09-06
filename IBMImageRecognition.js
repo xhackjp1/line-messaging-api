@@ -32,19 +32,9 @@ visualRecognition.classify(params, function(err, response) {
 
 exports.classify = function (images_file_buffer, message_id) {
   // images_file = streamifier.createReadStream(images_file_buffer);
-  let filename = './tmp/' + message_id + '.jpg';
-  // let ext = context.fileExtension[response.headers['content-type']];
-  // if (ext) {
-  //     filename += '.' + ext;
-  // }
-
-  // イメージファイルを保存する。 (Visual Recognitionに直接バイナリファイルを渡せないため)
-  fs.writeFileSync(filename, images_file_buffer);
-  var images_file = fs.createReadStream(filename);
-
 
   var params = {
-    images_file: images_file,
+    images_file: images_file_buffer,
     // classifier_ids: classifier_ids,
     threshold: threshold,
     accept_language: 'ja'
