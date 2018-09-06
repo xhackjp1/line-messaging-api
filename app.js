@@ -45,18 +45,21 @@ app.post('/callback', function(req, res) {
 
         // ユーザIDを取得する
         var user_id = req.body['events'][0]['source']['userId'];
+        var message_id = req.body['events'][0]['message']['id'];
+        // 'text', 'image' ...
+        var message_type = req.body['events'][0]['message']['type'];
         var message_text = req.body['events'][0]['message']['text'];
         if (req.body['events'][0]['source']['type'] == 'user') {
           request.get(getProfileOption(user_id), function(error, response, body) {
             if (!error && response.statusCode == 200) {
-              callback(req, body['displayName'], message_text);
+              callback(req, body['displayName'], message_id, message_type, message_text);
             }
           });
         }
       },
     ],
 
-    function(req, displayName, message_text) {
+    function(req, displayName, message_id, message_type, message_text) {
 
       var message = "hello, " + displayName + "さん"; // helloと返事する
       sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
@@ -76,7 +79,6 @@ app.post('/callback', function(req, res) {
 //            return;
 //        }
 
-
       // // 天気ときたら東京の天気が返ってくる
       // // APIキーの設定と、ライブラリの読み込みが必要
       // if (message_text === "天気") {
@@ -95,6 +97,26 @@ app.post('/callback', function(req, res) {
       //   sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
       //   return;
       // }
+
+      // 画像認識パート
+      if (message_type === 'image') {
+        const line = require('@line/bot-sdk');
+
+        const client = new line.Client({
+          channelAccessToken: rocess.env.LINE_CHANNEL_ACCESS_TOKEN
+        });
+
+        client.getMessageContent(message_id)
+          .then((stream) => {
+            stream.on('data', (chunk) => {
+              console.log(chunk)
+            });
+            stream.on('error', (err) => {
+              // error handling
+              console.log('error on image')
+            });
+        });
+      }
 
       return;
     }
