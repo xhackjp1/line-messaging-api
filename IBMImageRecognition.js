@@ -17,8 +17,7 @@ var images_file = fs.createReadStream('image/fruitbowl.jpg');
 var threshold = 0.6; // 数値を変えてみましょう
 
 var params = {
-  // images_file: images_file,
-  url: 'https://watson-developer-cloud.github.io/doc-tutorial-downloads/visual-recognition/fruitbowl.jpg'
+  images_file: images_file,
   // classifier_ids: classifier_ids,
   threshold: threshold,
   accept_language: 'ja'
