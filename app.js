@@ -33,8 +33,8 @@ app.post('/callback', function(req, res) {
         if (!validate_signature(req.headers['x-line-signature'], req.body)) {
           return;
         }
-        // テキストが送られてきた場合のみ返事をする
-        if ((req.body['events'][0]['type'] != 'message') || (req.body['events'][0]['message']['type'] != 'text')) {
+        // テキストか画像が送られてきた場合のみ返事をする
+        if ((req.body['events'][0]['type'] != 'message') || (req.body['events'][0]['message']['type'] != 'text') || (req.body['events'][0]['message']['type'] != 'image')) {
           return;
         }
 
