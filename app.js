@@ -120,6 +120,7 @@ app.post('/callback', function(req, res) {
         client.getMessageContent(message_id)
           .then((stream) => {
             stream.on('data', (chunk) => {
+              console.log(chunk)
               message = visualRecognition.classify(chunk)
               sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
             });
