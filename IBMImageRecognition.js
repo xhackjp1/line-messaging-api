@@ -44,6 +44,7 @@ exports.classify = function (images_file_buffer, callback) {
     if (err)
       console.log(err);
     else
+      console.log(JSON.stringify(response['images'][0]['classifiers'][0]['classes'], null, 2))
       callback(JSON.stringify(response['images'][0]['classifiers'][0]['classes'], null, 2))
   });
 }
