@@ -12,7 +12,7 @@ var visualRecognition = new VisualRecognitionV3({
 });
 
 var images_file = fs.createReadStream('image/fruitbowl.jpg');
-console.log(images_file)
+console.log(typeof images_file)
 
 // var classifier_ids = ["fruits_1462128776","SatelliteModel_6242312846"];
 var threshold = 0.6; // 数値を変えてみましょう
@@ -33,6 +33,8 @@ visualRecognition.classify(params, function(err, response) {
 
 exports.classify = function (images_file_buffer) {
   images_file = streamifier.createReadStream(images_file_buffer);
+  console.log(typeof images_file_buffer)
+  console.log(typeof images_file)
   var params = {
     images_file: images_file,
     // classifier_ids: classifier_ids,
