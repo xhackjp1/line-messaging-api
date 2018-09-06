@@ -110,7 +110,7 @@ app.post('/callback', function(req, res) {
         const line = require('@line/bot-sdk');
 
         const client = new line.Client({
-          channelAccessToken: rocess.env.LINE_CHANNEL_ACCESS_TOKEN
+          channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
         });
 
         client.getMessageContent(message_id)
