@@ -12,7 +12,6 @@ var visualRecognition = new VisualRecognitionV3({
 });
 
 var images_file = fs.createReadStream('image/fruitbowl.jpg');
-console.log(typeof images_file)
 
 // var classifier_ids = ["fruits_1462128776","SatelliteModel_6242312846"];
 var threshold = 0.6; // 数値を変えてみましょう
@@ -31,8 +30,19 @@ visualRecognition.classify(params, function(err, response) {
     console.log(JSON.stringify(response['images'][0]['classifiers'][0]['classes'], null, 2))
 });
 
-exports.classify = function (images_file_buffer) {
-  images_file = streamifier.createReadStream(Buffer.concat(images_file_buffer));
+exports.classify = function (images_file_buffer, message_id) {
+  // images_file = streamifier.createReadStream(images_file_buffer);
+  let filename = './tmp/' + message_id + '.jpg';
+  // let ext = context.fileExtension[response.headers['content-type']];
+  // if (ext) {
+  //     filename += '.' + ext;
+  // }
+
+  // イメージファイルを保存する。 (Visual Recognitionに直接バイナリファイルを渡せないため)
+  fs.writeFileSync(filename, images_file_buffer);
+  var images_file = fs.createReadStream(filename);
+
+
   var params = {
     images_file: images_file,
     // classifier_ids: classifier_ids,
