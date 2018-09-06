@@ -14,6 +14,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "request": "^2.75.0",
+    "streamifier": "^0.1.1",
     "watson-developer-cloud": "^3.9.1"
   }
 }
