@@ -26,5 +26,21 @@ visualRecognition.classify(params, function(err, response) {
   if (err)
     console.log(err);
   else
-    console.log(JSON.stringify(response, null, 2))
+    console.log(JSON.stringify(response['images'][0]['classifiers'][0]['classes'], null, 2))
 });
+
+exports.classify = function (images_file) {
+  var params = {
+    images_file: images_file,
+    // classifier_ids: classifier_ids,
+    threshold: threshold,
+    accept_language: 'ja'
+  };
+
+  visualRecognition.classify(params, function(err, response) {
+    if (err)
+      console.log(err);
+    else
+      return JSON.stringify(response['images'][0]['classifiers'][0]['classes'], null, 2)
+  });
+}

@@ -4,12 +4,15 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var crypto = require("crypto");
 var async = require('async');
+const line = require('@line/bot-sdk')
 
 var sendMessage = require('./sendMessage.js');
 var messageTemplate = require('./messageTemplate.js');
 
 // var pgManager = require('./postgresManager.js'); // データベースを使う時に必要
 // var weather_api = require('./openWeatherMap.js'); // 天気APIを使う時に必要
+var visualRecognition = require('./IBMImageRecognition.js'); // 画像認識AIを使う時に必要
+
 // utilモジュールを使います。
 var util = require('util');
 
@@ -65,8 +68,11 @@ app.post('/callback', function(req, res) {
 
     function(req, displayName, message_id, message_type, message_text) {
 
-      var message = "hello, " + displayName + "さん"; // helloと返事する
-      sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
+      var message = "hello, " + displayName + "さん";
+      // テキストが来たときだけhelloと返事する
+      if (message_type === 'text') {
+        sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
+      }
 
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
@@ -102,13 +108,11 @@ app.post('/callback', function(req, res) {
       //   return;
       // }
 
-      // 画像認識パート
+      //////////////////
+      // 画像認識パート //
+      /////////////////
 
-      console.log('outside', message_type);
       if (message_type === 'image') {
-        console.log('inside', message_type);
-        const line = require('@line/bot-sdk');
-
         const client = new line.Client({
           channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
         });
@@ -116,7 +120,8 @@ app.post('/callback', function(req, res) {
         client.getMessageContent(message_id)
           .then((stream) => {
             stream.on('data', (chunk) => {
-              console.log(chunk)
+              message = visualRecognition.classify(chunk)
+              sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
             });
             stream.on('error', (err) => {
               // error handling
