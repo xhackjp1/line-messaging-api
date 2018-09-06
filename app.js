@@ -33,8 +33,12 @@ app.post('/callback', function(req, res) {
         if (!validate_signature(req.headers['x-line-signature'], req.body)) {
           return;
         }
-        // テキストが送られてきた場合のみ返事をする
-        if ((req.body['events'][0]['type'] != 'message') || (req.body['events'][0]['message']['type'] != 'text')) {
+        // テキストか画像が送られてきた場合のみ返事をする
+        if (
+          (req.body['events'][0]['type'] != 'message') ||
+          ((req.body['events'][0]['message']['type'] != 'text') &&
+          (req.body['events'][0]['message']['type'] != 'image'))
+        ) {
           return;
         }
 
@@ -106,7 +110,7 @@ app.post('/callback', function(req, res) {
         const line = require('@line/bot-sdk');
 
         const client = new line.Client({
-          channelAccessToken: rocess.env.LINE_CHANNEL_ACCESS_TOKEN
+          channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
         });
 
         client.getMessageContent(message_id)
