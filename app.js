@@ -99,7 +99,10 @@ app.post('/callback', function(req, res) {
       // }
 
       // 画像認識パート
+
+      console.log('outside', message_type);
       if (message_type === 'image') {
+        console.log('inside', message_type);
         const line = require('@line/bot-sdk');
 
         const client = new line.Client({
@@ -115,7 +118,7 @@ app.post('/callback', function(req, res) {
               // error handling
               console.log('error on image')
             });
-        });
+          });
       }
 
       return;
