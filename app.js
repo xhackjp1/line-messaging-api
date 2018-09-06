@@ -34,7 +34,11 @@ app.post('/callback', function(req, res) {
           return;
         }
         // テキストか画像が送られてきた場合のみ返事をする
-        if ((req.body['events'][0]['type'] != 'message') || (req.body['events'][0]['message']['type'] != 'text') || (req.body['events'][0]['message']['type'] != 'image')) {
+        if (
+          (req.body['events'][0]['type'] != 'message') ||
+          ((req.body['events'][0]['message']['type'] != 'text') &&
+          (req.body['events'][0]['message']['type'] != 'image'))
+        ) {
           return;
         }
 
