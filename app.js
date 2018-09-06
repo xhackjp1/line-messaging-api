@@ -147,8 +147,11 @@ app.post('/callback', function(req, res) {
                 //保存
                 // fs.writeFileSync(`./image.jpg`, new Buffer(body), 'binary');
                 console.log('Got responce');
-                message = visualRecognition.classify(body)
-                sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
+                visualRecognition.classify(body, function (result) {
+                  sendMessage.send(req, [ messageTemplate.textMessage(result) ]);
+                  return;
+                })
+
             } else {
                 // @todo handle error
             }
