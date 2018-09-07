@@ -4,7 +4,6 @@ const APIKEY = 'P-bvRFw8UqdwvJLbn3y7eJsP4BO01E5IYwNulH2C-GEU';
 
 var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 var fs = require('fs');
-var streamifier = require('streamifier');
 
 var visualRecognition = new VisualRecognitionV3({
   version: '2018-03-19',
