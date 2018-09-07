@@ -1,3 +1,4 @@
+
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
 https://youtu.be/aByTfznhBWs
@@ -142,3 +143,66 @@ $ git push heroku master
 $ heroku config:set DATABASE_URL="[herokuデータベースのURL]"
 ```
 
+---
+
+---
+
+# 前提条件
+
+1. LINE DEVELOPERSアカウント
+2. Heroku アカウント
+3. Codenvy アカウント
+4. Github アカウント
+
+  上記は作成済みとする
+
+# 手順
+
+## STEP1 新規チャンネル作成
+
+LINE DEVELOPERS でプロバイダーを作成し、新規チャンネルを作成する <br>
+`アプリ名`、`アプリ説明文`、`プラン(Developer Trial)`、`大業種`、`小業種`、`メールアドレス` を入力
+
+## STEP2 チャンネル設定
+
+**アクセストークンを再発行、Webhook送信を利用するに変更**
+
+## STEP3 Heroku新規アプリ追加し、Webhookに設定
+
+herokuにログイし、
+**Create New Appを押して、App nameを追加** <br>
+**herokuのURLを取得し、チャンネルのWebhook URLに設定する**
+
+## STEP4 QRコードから友達追加
+
+**自動応答メッセージを利用しないに設定**
+
+## STEP5 Codenvyにworkspace追加
+
+**Add workspace 'Node' を選択** <br>
+**Add Import Project でGitのURLをセット**
+https://github.com/x-hack-git/line-messaging-api.git<br>
+**workspace追加**、完了までしばらく待つ
+
+## STEP6 Codenvyでの作業
+
+チャンネルシークレットと、チャンネルアクセストークンはLINE DEVELOPERSから取得する <br>
+注意: 最初の`$`記号は打たないこと！
+
+```
+$ cd line-messaging-api
+$ curl https://cli-assets.heroku.com/install.sh | sh
+$ heroku login
+$ heroku git:remote -a [Herokuアプリ名]
+$ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
+$ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
+$ heroku config
+$ git push -u heroku master
+```
+
+
+## STEP7 メッセージを送ってみる
+
+**無事メッセージが表示されれば成功！**
+
+---
