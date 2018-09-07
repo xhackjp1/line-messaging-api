@@ -4,8 +4,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var crypto = require("crypto");
 var async = require('async');
-const line = require('@line/bot-sdk')
-const Request = require('request');
+// const line = require('@line/bot-sdk') // 今は使ってない
 
 var sendMessage = require('./sendMessage.js');
 var messageTemplate = require('./messageTemplate.js');
@@ -132,34 +131,34 @@ app.post('/callback', function(req, res) {
         //     });
         //   });
 
-
+        // https://qiita.com/n0bisuke/items/17c795fea4c2b5571ce0
+        // 上のLINE Developersドキュメントのコードだとうまくいかない。
+        // chunkにresponseとbodyが一緒に入っている？
+        // encoding: nullが設定されてないから？
         const options = {
-            url: `https://api.line.me/v2/bot/message/${message_id}/content`,
-            method: 'get',
-            headers: {
-                'Authorization': 'Bearer ' + process.env.LINE_CHANNEL_ACCESS_TOKEN,
-            },
-            encoding: null
+          url: `https://api.line.me/v2/bot/message/${message_id}/content`,
+          method: 'get',
+          headers: {
+              'Authorization': 'Bearer ' + process.env.LINE_CHANNEL_ACCESS_TOKEN,
+          },
+          encoding: null
         };
 
-        Request(options, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                //保存
-                // fs.writeFileSync(`./image.jpg`, new Buffer(body), 'binary');
-                console.log('Got responce');
-                visualRecognition.classify(body, function (result) {
-                  sendMessage.send(req, [ messageTemplate.textMessage(result) ]);
-                  return;
-                })
-
-            } else {
-                // @todo handle error
-            }
+        request(options, function(error, response, body) {
+          if (!error && response.statusCode == 200) {
+            console.log('Got responce');
+            visualRecognition.classify(body, function (result) {
+              sendMessage.send(req, [ messageTemplate.textMessage(result) ]);
+              return;
+            })
+          } else {
+            // @todo handle error
+          }
         });
-
-
-
       }
+      ////////////////////////
+      // 画像認識パートここまで //
+      ////////////////////////
 
       return;
     }

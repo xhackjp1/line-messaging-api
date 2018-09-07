@@ -130,12 +130,13 @@ $ heroku config:set DATABASE_URL=""
 - IBM Cloudのアカウント作成
   - [こちら](https://console.bluemix.net/docs/services/visual-recognition/getting-started.html#-)に従い作成
 - `npm install --save watson-developer-cloud`
-- `npm install @line/bot-sdk`
 
 ## 実行
 ### まずcurlでAPIを試す
 ```
 curl -X POST -u -H 'Accept-Language:ja' "apikey:{your-api-key}" --form "images_file=@./image/fruitbowl.jpg" "https://gateway.watsonplatform.net/visual-recognition/api/v3/classify?version=2018-03-19"
 ```
+### 次にnodeで試す
+`node IBMImageRecognition.js`
 
 ### LINE BOTを改造する
