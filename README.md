@@ -96,16 +96,19 @@ https://codenvy.io/site/login
 ### STEP-3 heroku CLI のインストール
 
 - 以下のコマンドを実行してみましょう
-`$ curl https://cli-assets.heroku.com/install.sh | sh`
-<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/install_heroku_cli.png" height="320px">
 
 # herokuと連携し、LINE Developersで取得した値をherokuにセットする
 
 ```
+$ cd line-messaging-api
+
+$ curl https://cli-assets.heroku.com/install.sh | sh
+
 $ heroku login
 $ heroku git:remote -a [アプリ名]
 $ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
 $ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
+
 $ git push heroku master
 ```
 
