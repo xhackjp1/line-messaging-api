@@ -106,6 +106,7 @@ $ heroku login
 $ heroku git:remote -a [アプリ名]
 $ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
 $ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
+$ git push heroku master
 ```
 
 ---
