@@ -1,6 +1,7 @@
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
 https://youtu.be/aByTfznhBWs
+---
 
 # xhack-bot
 
@@ -8,6 +9,8 @@ https://youtu.be/aByTfznhBWs
 
 今回作成するのは、自動で応答してくれるLINE BOTです</br>
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/sample_image.gif" height="320px">
+
+---
 
 # 必要なアカウント
 
