@@ -50,6 +50,7 @@ Botアカウントを作成し、herokuサーバーと連携します。
 - 友達追加する
 - LINE_CHANNEL_SECRETの取得
 - LINE_CHANNEL_ACCESS_TOKENの取得
+- Webhook送信 利用するに設定
 - Webhook URLをセットする(後述)
 - アプリケーションを一つ作成
 
@@ -140,12 +141,6 @@ herokuサーバーへのpush
 $ git add .
 $ git commit -m "update"
 $ git push heroku master
-```
-
-# heroku データベース接続
-
-```
-$ heroku config:set DATABASE_URL="[herokuデータベースのURL]"
 ```
 
 # 画像認識AIとの接続
