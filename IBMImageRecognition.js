@@ -1,6 +1,4 @@
-// const APIKEY = process.env.IBM_API_KEY;
-const APIKEY = 'P-bvRFw8UqdwvJLbn3y7eJsP4BO01E5IYwNulH2C-GEU';
-
+const APIKEY = process.env.IBM_API_KEY;
 
 var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 var fs = require('fs');
