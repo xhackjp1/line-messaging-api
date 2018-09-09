@@ -4,12 +4,15 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var crypto = require("crypto");
 var async = require('async');
+// const line = require('@line/bot-sdk') // 今は使ってない
 
 var sendMessage = require('./sendMessage.js');
 var messageTemplate = require('./messageTemplate.js');
 
 // var pgManager = require('./postgresManager.js'); // データベースを使う時に必要
 // var weather_api = require('./openWeatherMap.js'); // 天気APIを使う時に必要
+var visualRecognition = require('./IBMImageRecognition.js'); // 画像認識AIを使う時に必要
+
 // utilモジュールを使います。
 var util = require('util');
 
@@ -33,8 +36,12 @@ app.post('/callback', function(req, res) {
         if (!validate_signature(req.headers['x-line-signature'], req.body)) {
           return;
         }
-        // テキストが送られてきた場合のみ返事をする
-        if ((req.body['events'][0]['type'] != 'message') || (req.body['events'][0]['message']['type'] != 'text')) {
+        // テキストか画像が送られてきた場合のみ返事をする
+        if (
+          (req.body['events'][0]['type'] != 'message') ||
+          ((req.body['events'][0]['message']['type'] != 'text') &&
+          (req.body['events'][0]['message']['type'] != 'image'))
+        ) {
           return;
         }
 
@@ -45,23 +52,26 @@ app.post('/callback', function(req, res) {
 
         // ユーザIDを取得する
         var user_id = req.body['events'][0]['source']['userId'];
+        var message_id = req.body['events'][0]['message']['id'];
+        // 'text', 'image' ...
+        var message_type = req.body['events'][0]['message']['type'];
         var message_text = req.body['events'][0]['message']['text'];
         if (req.body['events'][0]['source']['type'] == 'user') {
           request.get(getProfileOption(user_id), function(error, response, body) {
             if (!error && response.statusCode == 200) {
-              callback(req, body['displayName'], message_text);
+              callback(req, body['displayName'], message_id, message_type, message_text);
             }
           });
         }
       },
     ],
 
-    function(req, displayName, message_text) {
+    function(req, displayName, message_id, message_type, message_text) {
 
       var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-      
+
       sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
 
       // 画像で返事をする
@@ -76,7 +86,6 @@ app.post('/callback', function(req, res) {
       //    sendMessage.send(req, [ messageTemplate.imagemapMessage(messages, 'https://i.imgur.com/Z6ilhSI.jpg') ]);
       //    return;
       // }
-
 
       // // 天気ときたら東京の天気が返ってくる
       // // APIキーの設定と、ライブラリの読み込みが必要
@@ -96,6 +105,58 @@ app.post('/callback', function(req, res) {
       //   sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
       //   return;
       // }
+
+      //////////////////
+      // 画像認識パート //
+      /////////////////
+
+      // if (message_type === 'image') {
+
+      //   // const client = new line.Client({
+      //   //   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
+      //   // });
+
+      //   // client.getMessageContent(message_id)
+      //   //   .then((stream) => {
+      //   //     stream.on('data', (chunk) => {
+      //   //       // console.log(typeof chunk)
+      //   //       message = visualRecognition.classify(chunk, message_id)
+      //   //       sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
+      //   //     });
+      //   //     stream.on('error', (err) => {
+      //   //       // error handling
+      //   //       console.log('error on image')
+      //   //     });
+      //   //   });
+
+      //   // https://qiita.com/n0bisuke/items/17c795fea4c2b5571ce0
+      //   // 上のLINE Developersドキュメントのコードだとうまくいかない。
+      //   // chunkにresponseとbodyが一緒に入っている？
+      //   // encoding: nullが設定されてないから？
+      //   const options = {
+      //     url: `https://api.line.me/v2/bot/message/${message_id}/content`,
+      //     method: 'get',
+      //     headers: {
+      //         'Authorization': 'Bearer ' + process.env.LINE_CHANNEL_ACCESS_TOKEN,
+      //     },
+      //     encoding: null
+      //   };
+
+      //   request(options, function(error, response, body) {
+      //     if (!error && response.statusCode == 200) {
+      //       console.log('Got responce');
+      //       visualRecognition.classify(body, function (result) {
+      //         sendMessage.send(req, [ messageTemplate.textMessage(result) ]);
+      //         return;
+      //       })
+      //     } else {
+      //       // @todo handle error
+      //     }
+      //   });
+      // }
+      ////////////////////////
+      // 画像認識パートここまで //
+      ////////////////////////
 
       return;
     }
