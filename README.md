@@ -159,7 +159,5 @@ $ git push heroku master
 curl -X POST -H 'Accept-Language:ja' -u "apikey:{API-KEY}" --form "images_file=@./image/fruitbowl.jpg" \
 "https://gateway.watsonplatform.net/visual-recognition/api/v3/classify?version=2018-03-19"
 ```
-### 次にnodeで試す
-`node IBMImageRecognition.js`
 
 ### LINE BOTを改造する
