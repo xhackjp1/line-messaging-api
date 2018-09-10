@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var crypto = require("crypto");
 var async = require('async');
-// const line = require('@line/bot-sdk') // 今は使ってない
 
 var sendMessage = require('./sendMessage.js');
 var messageTemplate = require('./messageTemplate.js');
