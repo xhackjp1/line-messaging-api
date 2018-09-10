@@ -55,3 +55,17 @@ exports.singleImagemapMessage = function (typeName)
     }
   }
 }
+
+/**
+ * Componse parameter for Image Message with given arguments
+ * @param {string} url image url with ssl protocol
+ * @param {string} previewUrl image url with ssl protocol for preview, optional
+ * @return {object} object with schema defined as Image Message API parameter
+ */
+exports.imageMessage = function (url, previewUrl) {
+  return {
+    "type": "image",
+    "originalContentUrl": url,
+    "previewImageUrl": previewUrl || url
+  }
+}

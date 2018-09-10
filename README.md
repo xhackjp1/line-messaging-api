@@ -2,12 +2,16 @@
 下記のリンク先動画で手順を再現しています<br>
 https://youtu.be/aByTfznhBWs
 
+---
+
 # xhack-bot
 
 勉強会用のBOTソースコードです。
 
 今回作成するのは、自動で応答してくれるLINE BOTです</br>
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/sample_image.gif" height="320px">
+
+---
 
 # 必要なアカウント
 
@@ -46,6 +50,7 @@ Botアカウントを作成し、herokuサーバーと連携します。
 - 友達追加する
 - LINE_CHANNEL_SECRETの取得
 - LINE_CHANNEL_ACCESS_TOKENの取得
+- Webhook送信 利用するに設定
 - Webhook URLをセットする(後述)
 - アプリケーションを一つ作成
 
@@ -69,6 +74,8 @@ https://codenvy.io/site/login
 ### やること
 特になし
 
+---
+
 # codenvyでの作業
 
 ## codenvyでワークスペース作成
@@ -90,17 +97,28 @@ https://codenvy.io/site/login
 ### STEP-3 heroku CLI のインストール
 
 - 以下のコマンドを実行してみましょう
+
 `$ curl https://cli-assets.heroku.com/install.sh | sh`
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/install_heroku_cli.png" height="320px">
 
 # herokuと連携し、LINE Developersで取得した値をherokuにセットする
 
 ```
+$ cd line-messaging-api
+
+$ curl https://cli-assets.heroku.com/install.sh | sh
+
 $ heroku login
 $ heroku git:remote -a [アプリ名]
-$ heroku config:set LINE_CHANNEL_SECRET=""
-$ heroku config:set LINE_CHANNEL_ACCESS_TOKEN=""
+$ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
+$ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
+
+$ git push heroku master
 ```
+
+---
+
+# 補足
 
 ### 天気APIを使う場合
 1. こちらでアカウント作成 → https://openweathermap.org/api
@@ -110,15 +128,19 @@ $ heroku config:set LINE_CHANNEL_ACCESS_TOKEN=""
 $ heroku config:set WEATHER_API_KEY=""
 ```
 
-# herokuにpushする
+# コードを修正してherokuにpushする
+
+gitの初期設定(一度だけ)
 ```
+$ git config user.name "Your Name"
+$ git config user.email "youremail@example.com"
+```
+
+herokuサーバーへのpush
+```
+$ git add .
+$ git commit -m "update"
 $ git push heroku master
-```
-
-# heroku データベース接続
-
-```
-$ heroku config:set DATABASE_URL=""
 ```
 
 # 画像認識AIとの接続
