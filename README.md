@@ -96,7 +96,7 @@ https://codenvy.io/site/login
 
 ### STEP-3 heroku CLI のインストール
 
-- 以下のコマンドを実行してみましょう
+- 以下のコマンドを実行してみましょう</br>
 
 `$ curl https://cli-assets.heroku.com/install.sh | sh`
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/install_heroku_cli.png" height="320px">
@@ -118,6 +118,14 @@ $ git push heroku master
 
 ---
 
+# コードを修正してherokuにpushする
+修正したら変更をHerokuに反映させる必要があるので、下記のコマンドを実行します
+```
+$ sh git.sh
+```
+
+---
+
 # 補足
 
 ### 天気APIを使う場合
@@ -127,38 +135,3 @@ $ git push heroku master
 ```
 $ heroku config:set WEATHER_API_KEY=""
 ```
-
-# コードを修正してherokuにpushする
-
-gitの初期設定(一度だけ)
-```
-$ git config user.name "Your Name"
-$ git config user.email "youremail@example.com"
-```
-
-herokuサーバーへのpush
-```
-$ git add .
-$ git commit -m "update"
-$ git push heroku master
-```
-
-# 画像認識AIとの接続
-## 概要
-- [IBM Cloud Visual Recognition](https://console.bluemix.net/docs/services/visual-recognition/index.html#-)を使い、画像の種類を返すLINE BOTを作成します。
-- [API reference](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/node.html?node#general-api)
-
-## 準備
-- IBM Cloudのアカウント作成
-  - [こちら](https://console.bluemix.net/docs/services/visual-recognition/getting-started.html#-)に従い作成
-- `npm install --save watson-developer-cloud`
-
-## 実行
-### まずcurlでAPIを試す
-```
-curl -X POST -u -H 'Accept-Language:ja' "apikey:{your-api-key}" --form "images_file=@./image/fruitbowl.jpg" "https://gateway.watsonplatform.net/visual-recognition/api/v3/classify?version=2018-03-19"
-```
-### 次にnodeで試す
-`node IBMImageRecognition.js`
-
-### LINE BOTを改造する
