@@ -7,6 +7,7 @@ var async = require('async');
 
 var sendMessage = require('./lib/sendMessage.js');
 var messageTemplate = require('./lib/messageTemplate.js');
+var gnavi = require('./lib/gnavi.js');
 // var weather_api = require('./lib/openWeatherMap.js'); // 天気APIを使う時に必要
 
 // utilモジュールを使います。
@@ -118,6 +119,11 @@ app.post('/callback', function(req, res) {
       //////////////////
       // 天気APIパート //
       /////////////////
+
+      gnavi.api(req.body, message_text, function (result) {
+        sendMessage.send(req, [ messageTemplate.textMessage(result['name']) ]);
+        return;
+      });
 
       return;
     }
