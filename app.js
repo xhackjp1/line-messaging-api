@@ -67,10 +67,10 @@ app.post('/callback', function(req, res) {
 
     function(req, displayName, message_id, message_type, message_text) {
 
-      //var message = "hello, " + displayName + "さん"; // helloと返事する
+      var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-      //sendMessage.send(req, [messageTemplate.textMessage(message)]);
+      sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
       ///////////////////
       // 画像で返事をする //
@@ -122,6 +122,9 @@ app.post('/callback', function(req, res) {
       ////////////////////
       // ぐるなびAPIパート //
       ////////////////////
+      /*
+      // 住所 改行 キーワード
+      // のフォーマットでメッセージを送ってください
       gnavi.api(req.body, message_text, function (result) {
         var text = result['name'] + "\n" + result['address'];
         sendMessage.send(req, [
@@ -130,6 +133,7 @@ app.post('/callback', function(req, res) {
         ]);
         return;
       });
+      */
       ////////////////////
       // ぐるなびAPIパート //
       ////////////////////
