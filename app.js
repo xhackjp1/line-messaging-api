@@ -67,11 +67,10 @@ app.post('/callback', function(req, res) {
 
     function(req, displayName, message_id, message_type, message_text) {
 
-      var message = "hello, " + displayName + "さん"; // helloと返事する
+      //var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-
-      sendMessage.send(req, [messageTemplate.textMessage(message)]);
+      //sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
       ///////////////////
       // 画像で返事をする //
@@ -120,10 +119,16 @@ app.post('/callback', function(req, res) {
       // 天気APIパート //
       /////////////////
 
+      ////////////////////
+      // ぐるなびAPIパート //
+      ////////////////////
       gnavi.api(req.body, message_text, function (result) {
         sendMessage.send(req, [ messageTemplate.textMessage(result['name']) ]);
         return;
       });
+      ////////////////////
+      // ぐるなびAPIパート //
+      ////////////////////
 
       return;
     }
