@@ -1,12 +1,12 @@
 {
-  "name": "kukkoro-bot",
+  "name": "x-hack",
   "version": "1.0.0",
-  "description": "kukkoro-bot",
+  "description": "messaging-api",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "k-nakayama-pg",
+  "author": "shinsuke matsuda",
   "license": "ISC",
   "dependencies": {
     "async": "^2.1.2",
