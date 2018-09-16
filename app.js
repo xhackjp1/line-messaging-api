@@ -5,12 +5,9 @@ var request = require('request');
 var crypto = require("crypto");
 var async = require('async');
 
-var sendMessage = require('./sendMessage.js');
-var messageTemplate = require('./messageTemplate.js');
-
-// var pgManager = require('./postgresManager.js'); // データベースを使う時に必要
-// var weather_api = require('./openWeatherMap.js'); // 天気APIを使う時に必要
-// var visualRecognition = require('./IBMImageRecognition.js'); // 画像認識AIを使う時に必要
+var sendMessage = require('./lib/sendMessage.js');
+var messageTemplate = require('./lib/messageTemplate.js');
+// var weather_api = require('./lib/openWeatherMap.js'); // 天気APIを使う時に必要
 
 // utilモジュールを使います。
 var util = require('util');
@@ -23,6 +20,7 @@ app.use(bodyParser.urlencoded({
 // JSONパーサー
 app.use(bodyParser.json());
 
+// herokuのTOPページに表示されるコンテンツを指定する
 app.get('/', function(req, res) {
   res.send('<h1>hello world</h1>');
 });
@@ -31,31 +29,32 @@ app.get('/', function(req, res) {
 app.post('/callback', function(req, res) {
   async.waterfall([
       function(callback) {
+
         // リクエストがLINE Platformから送られてきたか確認する
         if (!validate_signature(req.headers['x-line-signature'], req.body)) {
           return;
         }
+
         // テキストか画像が送られてきた場合のみ返事をする
-        if (
-          (req.body['events'][0]['type'] != 'message') ||
-          ((req.body['events'][0]['message']['type'] != 'text') &&
-          (req.body['events'][0]['message']['type'] != 'image'))
-        ) {
+        if (!isValidDataType(req)) {
           return;
         }
 
         // 特定の単語に反応させたい場合
-        //if (req.body['events'][0]['message']['text'].indexOf('please input some word') == -1) {
+        // var textData = req.body['events'][0]['message']['text'];
+        //if (textData.indexOf('please input some word') == -1) {
         //    return;
         //}
 
         // ユーザIDを取得する
-        var user_id = req.body['events'][0]['source']['userId'];
-        var message_id = req.body['events'][0]['message']['id'];
+        var eventData = req.body['events'][0];
+        var user_id = eventData['source']['userId'];
+        var message_id = eventData['message']['id'];
         // 'text', 'image' ...
-        var message_type = req.body['events'][0]['message']['type'];
-        var message_text = req.body['events'][0]['message']['text'];
-        if (req.body['events'][0]['source']['type'] == 'user') {
+        var message_type = eventData['message']['type'];
+        var message_text = eventData['message']['text'];
+        if (eventData['source']['type'] == 'user') {
+          // ユーザー情報取得
           request.get(getProfileOption(user_id), function(error, response, body) {
             if (!error && response.statusCode == 200) {
               callback(req, body['displayName'], message_id, message_type, message_text);
@@ -71,7 +70,7 @@ app.post('/callback', function(req, res) {
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
 
-      sendMessage.send(req, [ messageTemplate.textMessage(message) ]);
+      sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
       ///////////////////
       // 画像で返事をする //
@@ -120,42 +119,6 @@ app.post('/callback', function(req, res) {
       // 天気APIパート //
       /////////////////
 
-      //////////////////
-      // 画像認識パート //
-      /////////////////
-      /*
-      if (message_type === 'image') {
-
-        // https://qiita.com/n0bisuke/items/17c795fea4c2b5571ce0
-        // 上のLINE Developersドキュメントのコードだとうまくいかない。
-        // chunkにresponseとbodyが一緒に入っている？
-        // encoding: nullが設定されてないから？
-        const options = {
-          url: `https://api.line.me/v2/bot/message/${message_id}/content`,
-          method: 'get',
-          headers: {
-              'Authorization': 'Bearer ' + process.env.LINE_CHANNEL_ACCESS_TOKEN,
-          },
-          encoding: null
-        };
-
-        request(options, function(error, response, body) {
-          if (!error && response.statusCode == 200) {
-            console.log('Got responce');
-            visualRecognition.classify(body, function (result) {
-              sendMessage.send(req, [ messageTemplate.textMessage(result) ]);
-              return;
-            })
-          } else {
-            // @todo handle error
-          }
-        });
-      }
-      */
-      ////////////////////////
-      // 画像認識パートここまで //
-      ////////////////////////
-
       return;
     }
   );
@@ -165,14 +128,17 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running');
 });
 
-// メッセージの長さを返す
-function textcount(body) {
-  return body.length;
-}
+function isValidDataType(req) {
+  var eventType = req.body['events'][0];
+  var messageType = eventType['message']['type'];
 
-// ランダムな数値を取得する
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
+  if (eventType['type'] != 'message') {
+    return false; // メッセージではない
+  }
+  if (messageType != 'text' && messageType != 'image') {
+    return false; // テキストでも画像でもない
+  }
+  return true;
 }
 
 function getProfileOption(user_id) {
