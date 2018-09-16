@@ -123,7 +123,13 @@ app.post('/callback', function(req, res) {
       // ぐるなびAPIパート //
       ////////////////////
       gnavi.api(req.body, message_text, function (result) {
-        sendMessage.send(req, [ messageTemplate.textMessage(result['name']) ]);
+        var text = result['name'] + "\n" +
+        result['address'] + "\n" +
+        result['opentime'];
+        sendMessage.send(req, [
+          messageTemplate.textMessage(text),
+          messageTemplate.imageMessage(result['shop_image1'], result['shop_image1'])
+        ]);
         return;
       });
       ////////////////////
