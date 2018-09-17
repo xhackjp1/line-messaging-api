@@ -2,10 +2,10 @@
 - [動画による解説](#動画による解説)
 - [完成イメージ](#完成イメージ)
 - [必要なアカウント](#必要なアカウント)
-- [Herokuアプリ作成](#Herokuアプリ作成)
-- [LINEチャネル作成](#LINEチャネル作成)
-- [Codenvyワークスペース作成](#Codenvyワークスペース作成)
-- [Codenvyでの作業](#Codenvyでの作業)
+- [Herokuアプリ作成](#Heroku)
+- [LINEチャネル作成](#LINE)
+- [Codenvyワークスペース作成](#Codenvy)
+- [Codenvyでの作業](#開発環境)
 - [LINEのAPIkeyをherokuにセットする](#LINEのAPIkeyをherokuにセットする)
 
 # 動画による解説
@@ -46,7 +46,7 @@ https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&fl
 
 Herokuのサービスにログインし、アカウントを作成します
 
-## Heroku アカウントの利用登録
+## Herokuアカウントの利用登録
 https://id.heroku.com/login
 
 今回利用するクラウドサーバーです。</br>
@@ -56,16 +56,18 @@ https://id.heroku.com/login
 - アプリを作成する
 - アプリのURLを取得する
 
-# LINEチャネル作成
+# LINE
 
-## アカウント作成画面付き解説
+チャネル作成
+
+## アカウント作成
 https://codezine.jp/article/detail/10658
 
-## LINE Messaging API の利用登録
+## LINE Messaging API利用登録
 https://developers.line.me/ja/
 
 LINE Messaging APIを利用するために必要です。</br>
-Botアカウントを作成し、herokuサーバーと連携します。
+botアカウントを作成し、herokuサーバーと連携します。
 
 ## やること
 - 友達追加する
@@ -75,30 +77,19 @@ Botアカウントを作成し、herokuサーバーと連携します。
 - Webhook URLをセットする(後述)
 - アプリケーションを一つ作成
 
-# Codenvyワークスペース作成
-
-codenvyアカウント登録
-https://codenvy.io/site/login
-
-ブラウザ上で動作する開発環境です。</br>
-開発環境を構築する際の、複雑で面倒なインストール作業を省略できます。</br>
-実際にコードを書いてプログラミングをし、herokuサーバーにアップロードします。
-
-## やること
-- herokuと連携する
-- LINE Messaging APIを利用するための準備をする
-
 ## githubアカウント
 ソースコードを公開するためのサービスです。</br>
 複数人で同じプロジェクトを開発するときにお互いの編集作業を連携するのに便利です。</br>
 また、クラウドサーバーにソースコードをアップするのにも使えます。
 
-### やること
-特になし
-
 ---
 
-# Codenvyでの作業
+# Codenvy
+
+Codenvyでの作業
+
+## アカウント登録
+https://codenvy.io/site/login
 
 ## codenvyでワークスペース作成
 
@@ -120,7 +111,10 @@ https://codenvy.io/site/login
 
 - 以下のコマンドを実行してみましょう</br>
 
-`$ curl https://cli-assets.heroku.com/install.sh | sh`
+```
+$ curl https://cli-assets.heroku.com/install.sh | sh
+```
+
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/install_heroku_cli.png" height="320px">
 
 # LINEのAPIkeyをherokuにセットする
