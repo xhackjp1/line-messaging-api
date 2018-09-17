@@ -8,6 +8,7 @@ var async = require('async');
 var sendMessage = require('./lib/sendMessage.js');
 var messageTemplate = require('./lib/messageTemplate.js');
 var gnavi = require('./lib/gnavi.js'); // ぐるなびAPIを使うときに必要
+var googleapi = require('./lib/googleMapAPI.js'); // ぐるなびAPIを使うときに必要
 // var weather_api = require('./lib/openWeatherMap.js'); // 天気APIを使う時に必要
 
 // utilモジュールを使います。
@@ -125,18 +126,27 @@ app.post('/callback', function(req, res) {
 
       // 住所 改行 キーワード
       // のフォーマットでメッセージを送ってください
-      gnavi.api(req.body, message_text, function(result) {
-        var text = result['name'] + "\n" + result['address'];
-        sendMessage.send(req, [
-          messageTemplate.textMessage(text),
-          messageTemplate.imageMessage(result['shop_image1'], result['shop_image1'])
-        ]);
-        return;
-      });
+      // gnavi.api(req.body, message_text, function(result) {
+      //   var text = result['name'] + "\n" + result['address'];
+      //   sendMessage.send(req, [
+      //     messageTemplate.textMessage(text),
+      //     messageTemplate.imageMessage(result['shop_image1'], result['shop_image1'])
+      //   ]);
+      //   return;
+      // });
 
       ////////////////////
       // ぐるなびAPIパート //
       ////////////////////
+
+      googleapi.api(function(result) {
+        var text = "成功";
+        sendMessage.send(req, [
+          messageTemplate.textMessage(text)
+          //messageTemplate.imageMessage(result['shop_image1'], result['shop_image1'])
+        ]);
+        return;
+      });
 
       return;
     }
