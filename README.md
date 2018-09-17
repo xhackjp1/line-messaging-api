@@ -3,16 +3,11 @@
 - [使い方](#使い方)
 - [完成イメージ](#完成イメージ)
 - [必要なアカウント](#必要なアカウント)
-  - [Chrome](#Chrome)
-  - [Google](#Google)
-  - [Heroku](#Heroku)
-  - [LINE](#LINE)
-  - [Codenvy](#Codenvy)
-- [Herokuアプリ作成](#Heroku)
-- [LINEチャネル作成](#LINE)
-- [Codenvyワークスペース作成](#Codenvy)
-- [Codenvyでの作業](#開発環境)
-- [LINEのAPIkeyをherokuにセットする](#LINEのAPIkeyをherokuにセットする)
+  - [Chrome](##Chrome)
+  - [Google](##Google)
+  - [Heroku](##Heroku)
+  - [LINE](##LINE)
+  - [Codenvy](##Codenvy)
 
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
