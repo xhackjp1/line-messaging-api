@@ -1,11 +1,12 @@
-# TOC
+# 目次
 - [動画による解説](#動画による解説)
 - [完成イメージ](#完成イメージ)
 - [必要なアカウント](#必要なアカウント)
-
 - [Herokuアプリ作成](#Herokuアプリ作成)
 - [LINEチャネル作成](#LINEチャネル作成)
 - [Codenvyワークスペース作成](#Codenvyワークスペース作成)
+- [codenvyでの作業](#codenvyでの作業)
+- [herokuと連携し、LINE Developersで取得した値をherokuにセットする](#herokuと連携し、LINE Developersで取得した値をherokuにセットする)
 
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
@@ -15,7 +16,7 @@ https://youtu.be/aByTfznhBWs
 
 # xhack-bot
 
-勉強会用のBOTソースコードです。
+勉強会用の LINE BOT ソースコード です。
 
 # 完成イメージ
 <ul>
@@ -43,28 +44,28 @@ https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&fl
 
 # Herokuアプリ作成
 
-Heroku アカウントの利用登録
+## Heroku アカウントの利用登録
 https://id.heroku.com/login
 
 今回利用するクラウドサーバーです。</br>
 自分が書いたプログラムを、クラウド上で実行してくれるサービスです。
 
-### やること
+## やること
 - アプリを作成する
 - アプリのURLを取得する
 
 # LINEチャネル作成
 
-アカウント作成画面付き解説
+## アカウント作成画面付き解説
 https://codezine.jp/article/detail/10658
 
-LINE Messaging API の利用登録
+## LINE Messaging API の利用登録
 https://developers.line.me/ja/
 
 LINE Messaging APIを利用するために必要です。</br>
 Botアカウントを作成し、herokuサーバーと連携します。
 
-### やること
+## やること
 - 友達追加する
 - LINE_CHANNEL_SECRETの取得
 - LINE_CHANNEL_ACCESS_TOKENの取得
@@ -80,7 +81,7 @@ https://codenvy.io/site/login
 開発環境を構築する際の、複雑で面倒なインストール作業を省略できます。</br>
 実際にコードを書いてプログラミングをし、herokuサーバーにアップロードします。
 
-### やること
+## やること
 - herokuと連携する
 - LINE Messaging APIを利用するための準備をする
 
