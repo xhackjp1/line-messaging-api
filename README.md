@@ -1,7 +1,13 @@
 # 目次
 - [動画による解説](#動画による解説)
+- [使い方](#使い方)
 - [完成イメージ](#完成イメージ)
 - [必要なアカウント](#必要なアカウント)
+  - [Chrome](#Chrome)
+  - [Google](#Google)
+  - [Heroku](#Heroku)
+  - [LINE](#LINE)
+  - [Codenvy](#Codenvy)
 - [Herokuアプリ作成](#Heroku)
 - [LINEチャネル作成](#LINE)
 - [Codenvyワークスペース作成](#Codenvy)
@@ -14,7 +20,7 @@ https://youtu.be/aByTfznhBWs
 
 ---
 
-# xhack-bot
+# 使い方
 
 勉強会用の LINE BOT ソースコード です。
 
@@ -34,80 +40,73 @@ https://youtu.be/aByTfznhBWs
 
 # 必要なアカウント
 
-## Chromeインストール(必要があれば)
+## Chrome
 
-https://www.google.co.jp/chrome/?brand=CHBD&gclid=Cj0KCQjwtb_bBRCFARIsAO5fVvGSVp4jgIAY-Chnd2DUMxWERGGF0xRxr3dZLYHwZ1g92ohYH2MCAc0aAtv1EALw_wcB&gclsrc=aw.ds&dclid=CO6v1pLW6NwCFVoxKgod8XYO3Q
+ブラウザはChromeを利用してください
+https://www.google.com/intl/ja_ALL/chrome/
 
-## gmailアカウント取得(必要があれば)
+## Google
 
-https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
+アカウントがあると各種ログインが簡単になります
+https://accounts.google.com/
 
-# Herokuアプリ作成
+## Heroku
 
-Herokuのサービスにログインし、アカウントを作成します
-
-## Herokuアカウントの利用登録
+サーバーはherokuを利用します
 https://id.heroku.com/login
 
-今回利用するクラウドサーバーです。</br>
-自分が書いたプログラムを、クラウド上で実行してくれるサービスです。
+### 作業
+- アプリを一つ作成する
 
-## やること
-- アプリを作成する
-- アプリのURLを取得する
+## LINE
 
-# LINE
-
-チャネル作成
-
-## アカウント作成
+アカウント作成方法
 https://codezine.jp/article/detail/10658
 
 ## LINE Messaging API利用登録
 https://developers.line.me/ja/
 
-LINE Messaging APIを利用するために必要です。</br>
-botアカウントを作成し、herokuサーバーと連携します。
-
-## やること
-- 友達追加する
+### 作業
+- プロバイダ追加する
+- チャネル追加する
 - LINE_CHANNEL_SECRETの取得
 - LINE_CHANNEL_ACCESS_TOKENの取得
 - Webhook送信 利用するに設定
 - Webhook URLをセットする(後述)
-- アプリケーションを一つ作成
 
-## githubアカウント
-ソースコードを公開するためのサービスです。</br>
-複数人で同じプロジェクトを開発するときにお互いの編集作業を連携するのに便利です。</br>
-また、クラウドサーバーにソースコードをアップするのにも使えます。
+## github
+
+アカウント作成
+https://github.com/
 
 ---
 
-# Codenvy
+## Codenvy
 
-Codenvyでの作業
-
-## アカウント登録
+アカウント登録
 https://codenvy.io/site/login
 
-## codenvyでワークスペース作成
+### 作業 
+
+#### STEP-1 ワークスペース作成
 
 - サイドバーからcreate workspaceを選択
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/create_workspace.png" height="320px">
 
-### STEP-1 STACKを選択する
+### STEP-2 STACKを選択する
 
 - 今回はNodeを選択してください
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/select_node.png" height="320px">
 
-### STEP-2 PROJECTSでGitURLを指定する
+### STEP-3 PROJECTSでGitURLを指定する
 
 - 以下のURLをコピペして貼り付けましょう
-`https://github.com/x-hack-git/line-messaging-api.git`
-<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/select_repo.png" max-height="320px">
 
-### STEP-3 heroku CLI のインストール
+```
+https://github.com/x-hack-git/line-messaging-api.git
+```
+
+### STEP-4 heroku CLI のインストール
 
 - 以下のコマンドを実行してみましょう</br>
 
@@ -115,16 +114,12 @@ https://codenvy.io/site/login
 $ curl https://cli-assets.heroku.com/install.sh | sh
 ```
 
-<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/install_heroku_cli.png" height="320px">
-
-# LINEのAPIkeyをherokuにセットする
+### STEP-5 LINEのAPIkeyをherokuにセットする
 
 ターミナルで下記のコマンドを実行
 
 ```
 $ cd line-messaging-api
-
-$ curl https://cli-assets.heroku.com/install.sh | sh
 
 $ heroku login
 $ heroku git:remote -a [アプリ名]
@@ -136,8 +131,9 @@ $ git push heroku master
 
 ---
 
-# コードを修正してherokuにpushする
+### STEP-6 コードを修正してherokuにpushする
 修正したら変更をHerokuに反映させる必要があるので、下記のコマンドを実行します
+
 ```
 $ sh git.sh
 ```
