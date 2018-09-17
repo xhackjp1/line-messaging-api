@@ -40,43 +40,39 @@ https://youtu.be/aByTfznhBWs
 
 # 必要なアカウント
 
+下記のソフトウェアとアカウントが必要なので、事前に取得しておいてください
+
 ## Chrome
 
-ブラウザはChromeを利用してください
+ブラウザはChromeを利用してください<br>
 https://www.google.com/intl/ja_ALL/chrome/
 
 ## Google
 
-アカウントがあると各種ログインが簡単になります
+アカウントがあると各種ログインが簡単になります<br>
 https://accounts.google.com/
 
 ## Heroku
 
-サーバーはherokuを利用します
+サーバーはherokuを利用します<br>
 https://id.heroku.com/login
-
-### 作業
-- アプリを一つ作成する
 
 ## LINE
 
-アカウント作成方法
-https://codezine.jp/article/detail/10658
-
-## LINE Messaging API利用登録
+LINE Messaging API利用登録<br>
 https://developers.line.me/ja/
 
-### 作業
-- プロバイダ追加する
-- チャネル追加する
-- LINE_CHANNEL_SECRETの取得
-- LINE_CHANNEL_ACCESS_TOKENの取得
-- Webhook送信 利用するに設定
-- Webhook URLをセットする(後述)
+  ### 作業
+  - プロバイダ追加する
+  - チャネル追加する
+  - LINE_CHANNEL_SECRETの取得
+  - LINE_CHANNEL_ACCESS_TOKENの取得
+  - Webhook送信 利用するに設定
+  - Webhook URLをセットする(後述)
 
 ## github
 
-アカウント作成
+アカウント作成<br>
 https://github.com/
 
 ---
@@ -86,57 +82,51 @@ https://github.com/
 アカウント登録
 https://codenvy.io/site/login
 
-### 作業 
+  ### 作業 
 
-#### STEP-1 ワークスペース作成
+  #### STEP-1 ワークスペース作成
 
-- サイドバーからcreate workspaceを選択
-<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/create_workspace.png" height="320px">
+  - サイドバーからcreate workspaceを選択
+  <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/create_workspace.png" height="320px">
 
-### STEP-2 STACKを選択する
+  #### STEP-2 STACKを選択する
 
-- 今回はNodeを選択してください
-<img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/select_node.png" height="320px">
+  - 今回はNodeを選択してください
+  <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/select_node.png" height="320px">
 
-### STEP-3 PROJECTSでGitURLを指定する
+  #### STEP-3 PROJECTSでGitURLを指定する
 
-- 以下のURLをコピペして貼り付けましょう
+  - 以下のURLをコピペして貼り付けましょう
+  ```
+  https://github.com/x-hack-git/line-messaging-api.git
+  ```
 
-```
-https://github.com/x-hack-git/line-messaging-api.git
-```
+  #### STEP-4 heroku CLI のインストール
 
-### STEP-4 heroku CLI のインストール
+  - 以下のコマンドを実行してみましょう</br>
+  ```
+  $ curl https://cli-assets.heroku.com/install.sh | sh
+  ```
 
-- 以下のコマンドを実行してみましょう</br>
+  #### STEP-5 LINEのAPIkeyをherokuにセットする
 
-```
-$ curl https://cli-assets.heroku.com/install.sh | sh
-```
+  - ターミナルで下記のコマンドを実行
+  ```
+  $ cd line-messaging-api
+  $ heroku login
+  $ heroku git:remote -a [アプリ名]
+  $ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
+  $ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
+  $ git push heroku master
+  ```
 
-### STEP-5 LINEのAPIkeyをherokuにセットする
+  #### STEP-6 コードを修正してherokuにpushする
 
-ターミナルで下記のコマンドを実行
+  - 修正したら変更をHerokuに反映させる必要があるので、下記のコマンドを実行します
 
-```
-$ cd line-messaging-api
-
-$ heroku login
-$ heroku git:remote -a [アプリ名]
-$ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
-$ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
-
-$ git push heroku master
-```
-
----
-
-### STEP-6 コードを修正してherokuにpushする
-修正したら変更をHerokuに反映させる必要があるので、下記のコマンドを実行します
-
-```
-$ sh git.sh
-```
+  ```
+  $ sh git.sh
+  ```
 
 ---
 
