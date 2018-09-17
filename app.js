@@ -7,7 +7,7 @@ var async = require('async');
 
 var sendMessage = require('./lib/sendMessage.js');
 var messageTemplate = require('./lib/messageTemplate.js');
-var gnavi = require('./lib/gnavi.js');
+var gnavi = require('./lib/gnavi.js'); // ぐるなびAPIを使うときに必要
 // var weather_api = require('./lib/openWeatherMap.js'); // 天気APIを使う時に必要
 
 // utilモジュールを使います。
@@ -67,10 +67,10 @@ app.post('/callback', function(req, res) {
 
     function(req, displayName, message_id, message_type, message_text) {
 
-      var message = "hello, " + displayName + "さん"; // helloと返事する
+      //var message = "hello, " + displayName + "さん"; // helloと返事する
       //var message = message_text; // おうむ返しする
       //var message = message_text + "[" + message_text.length + "文字]";
-      sendMessage.send(req, [messageTemplate.textMessage(message)]);
+      //sendMessage.send(req, [messageTemplate.textMessage(message)]);
 
       ///////////////////
       // 画像で返事をする //
@@ -122,10 +122,10 @@ app.post('/callback', function(req, res) {
       ////////////////////
       // ぐるなびAPIパート //
       ////////////////////
-      /*
+
       // 住所 改行 キーワード
       // のフォーマットでメッセージを送ってください
-      gnavi.api(req.body, message_text, function (result) {
+      gnavi.api(req.body, message_text, function(result) {
         var text = result['name'] + "\n" + result['address'];
         sendMessage.send(req, [
           messageTemplate.textMessage(text),
@@ -133,7 +133,7 @@ app.post('/callback', function(req, res) {
         ]);
         return;
       });
-      */
+
       ////////////////////
       // ぐるなびAPIパート //
       ////////////////////
@@ -147,6 +147,8 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running');
 });
 
+// 送られてきたメッセージタイプをbotの内容に合わせる
+// 一致すればtrueを返す
 function isValidDataType(req) {
   var eventType = req.body['events'][0];
   var messageType = eventType['message']['type'];
