@@ -1,3 +1,12 @@
+# TOC
+- [動画による解説](#動画による解説)
+- [完成イメージ](#完成イメージ)
+- [必要なアカウント](#必要なアカウント)
+
+- [Herokuアプリ作成](#Herokuアプリ作成)
+- [LINEチャネル作成](#LINEチャネル作成)
+- [Codenvyワークスペース作成](#Codenvyワークスペース作成)
+
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
 https://youtu.be/aByTfznhBWs
@@ -8,6 +17,7 @@ https://youtu.be/aByTfznhBWs
 
 勉強会用のBOTソースコードです。
 
+# 完成イメージ
 <ul>
   <li>
   今回作成するのは、自動で応答してくれるLINE BOTです</br>
@@ -31,7 +41,7 @@ https://www.google.co.jp/chrome/?brand=CHBD&gclid=Cj0KCQjwtb_bBRCFARIsAO5fVvGSVp
 
 https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
 
-## Heroku アカウント
+# Herokuアプリ作成
 
 Heroku アカウントの利用登録
 https://id.heroku.com/login
@@ -43,7 +53,7 @@ https://id.heroku.com/login
 - アプリを作成する
 - アプリのURLを取得する
 
-## LINE Developer アカウント
+# LINEチャネル作成
 
 アカウント作成画面付き解説
 https://codezine.jp/article/detail/10658
@@ -62,7 +72,7 @@ Botアカウントを作成し、herokuサーバーと連携します。
 - Webhook URLをセットする(後述)
 - アプリケーションを一つ作成
 
-## codenvy アカウント
+# Codenvyワークスペース作成
 codenvyアカウント登録
 https://codenvy.io/site/login
 
