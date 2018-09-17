@@ -7,10 +7,10 @@
   - [Google](#google)
   - [Heroku](#heroku)
   - [LINE](#line)
-    - [作業](#作業) 
+    - [LINE Developerでの作業](#lineの作業) 
   - [github](#github)
   - [Codenvy](#codenvy)
-    - [作業](#作業)
+    - [Codenvyでの作業](#codenvyの作業)
 
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
@@ -60,7 +60,7 @@ https://id.heroku.com/login
 LINE Messaging API利用登録<br>
 https://developers.line.me/ja/
 
-  ### 作業
+  ### LINEの作業
   - プロバイダ追加する
   - チャネル追加する
   - LINE_CHANNEL_SECRETの取得
@@ -80,7 +80,7 @@ https://github.com/
 アカウント登録
 https://codenvy.io/site/login
 
-  ### 作業 
+  ### Codenvyの作業 
 
   #### STEP-1 ワークスペース作成
 
