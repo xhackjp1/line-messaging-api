@@ -3,11 +3,14 @@
 - [使い方](#使い方)
 - [完成イメージ](#完成イメージ)
 - [必要なアカウント](#必要なアカウント)
-  - [Chrome](##Chrome)
-  - [Google](##Google)
-  - [Heroku](##Heroku)
-  - [LINE](##LINE)
-  - [Codenvy](##Codenvy)
+  - [Chrome](#Chrome)
+  - [Google](#Google)
+  - [Heroku](#Heroku)
+  - [LINE](#LINE)
+    - [作業](#作業) 
+  - [github](#github)
+  - [Codenvy](#Codenvy)
+    - [作業](#作業)
 
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
