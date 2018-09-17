@@ -6,7 +6,7 @@
 - [LINEチャネル作成](#LINEチャネル作成)
 - [Codenvyワークスペース作成](#Codenvyワークスペース作成)
 - [Codenvyでの作業](#Codenvyでの作業)
-- [herokuと連携しLINE Developersで取得した値をherokuにセットする](#herokuと連携し、LINE Developersで取得した値をherokuにセットする)
+- [LINEのAPIkeyをherokuにセットする](#LINEのAPIkeyをherokuにセットする)
 
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
@@ -123,7 +123,9 @@ https://codenvy.io/site/login
 `$ curl https://cli-assets.heroku.com/install.sh | sh`
 <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/install_heroku_cli.png" height="320px">
 
-# herokuと連携し、LINE Developersで取得した値をherokuにセットする
+# LINEのAPIkeyをherokuにセットする
+
+ターミナルで下記のコマンドを実行
 
 ```
 $ cd line-messaging-api
