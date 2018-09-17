@@ -5,8 +5,8 @@
 - [Herokuアプリ作成](#Herokuアプリ作成)
 - [LINEチャネル作成](#LINEチャネル作成)
 - [Codenvyワークスペース作成](#Codenvyワークスペース作成)
-- [codenvyでの作業](#codenvyでの作業)
-- [herokuと連携し、LINE Developersで取得した値をherokuにセットする](#herokuと連携し、LINE Developersで取得した値をherokuにセットする)
+- [Codenvyでの作業](#Codenvyでの作業)
+- [herokuと連携しLINE Developersで取得した値をherokuにセットする](#herokuと連携し、LINE Developersで取得した値をherokuにセットする)
 
 # 動画による解説
 下記のリンク先動画で手順を再現しています<br>
@@ -44,6 +44,8 @@ https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&fl
 
 # Herokuアプリ作成
 
+Herokuのサービスにログインし、アカウントを作成します
+
 ## Heroku アカウントの利用登録
 https://id.heroku.com/login
 
@@ -74,6 +76,7 @@ Botアカウントを作成し、herokuサーバーと連携します。
 - アプリケーションを一つ作成
 
 # Codenvyワークスペース作成
+
 codenvyアカウント登録
 https://codenvy.io/site/login
 
@@ -95,7 +98,7 @@ https://codenvy.io/site/login
 
 ---
 
-# codenvyでの作業
+# Codenvyでの作業
 
 ## codenvyでワークスペース作成
 
