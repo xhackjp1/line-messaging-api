@@ -145,7 +145,11 @@ app.post('/callback', function(req, res) {
       });
       */
 
-      
+      ///////////////////////
+      // pushメッセージのパート //
+      ///////////////////////
+      //sendMessage.send(req, [messageTemplate.pushMessage("タイトル", "説明")]);
+
       return;
     }
   );
