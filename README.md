@@ -128,6 +128,12 @@ https://codenvy.io/site/login
 
 ---
 
+# データベースCLI
+インストール
+```
+$ sudo apt-get install postgresql
+```
+
 # 補足
 
 ### 天気APIを使う場合
