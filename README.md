@@ -119,7 +119,7 @@ https://codenvy.io/site/login
   $ npm install -g heroku
   
   $ git init
-  $ git remote add -u heroku https://git.heroku.com/アプリ名.git
+  $ git remote set-url heroku https://git.heroku.com/アプリ名.git
   $ git push heroku master 
     
   $ heroku git:remote -a [アプリ名]
