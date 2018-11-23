@@ -118,7 +118,9 @@ https://codenvy.io/site/login
   $ cd line-messaging-api
   $ npm install -g heroku
   
-  $ heroku login
+  $ git init
+  $ git remote add -u heroku https://git.heroku.com/アプリ名.git
+  $ git push heroku master 
     
   $ heroku git:remote -a [アプリ名]
   $ git push heroku master
