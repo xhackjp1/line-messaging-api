@@ -60,6 +60,11 @@ https://id.heroku.com/login
 LINE Messaging API利用登録<br>
 https://developers.line.me/ja/
 
+## LINE@
+
+一斉メッセージの設定などができる画面
+https://admin-official.line.me
+
   ### LINEの作業
   - プロバイダ追加する
   - チャネル追加する
