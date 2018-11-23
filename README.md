@@ -116,10 +116,13 @@ https://codenvy.io/site/login
   - ターミナルで下記のコマンドを実行
   ```
   $ cd line-messaging-api
+  $ npm install -g heroku
+  
   $ heroku login
+  
+  $ npm 
+  
   $ heroku git:remote -a [アプリ名]
-  $ heroku config:set LINE_CHANNEL_SECRET="[チャンネルシークレット]"
-  $ heroku config:set LINE_CHANNEL_ACCESS_TOKEN="[チャンネルアクセストークン]"
   $ git push heroku master
   ```
 
