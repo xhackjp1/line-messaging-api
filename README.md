@@ -119,9 +119,7 @@ https://codenvy.io/site/login
   $ npm install -g heroku
   
   $ heroku login
-  
-  $ npm 
-  
+    
   $ heroku git:remote -a [アプリ名]
   $ git push heroku master
   ```
