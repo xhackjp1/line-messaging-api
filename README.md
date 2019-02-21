@@ -4,28 +4,30 @@
 - [完成イメージ](#完成イメージ)
 - [必要なアカウント](#必要なアカウント)
 
+---
+
 # 動画による解説
-下記のリンク先動画で手順を再現しています<br>
+下記のリンク先動画で手順を再現しています  
 https://youtu.be/aByTfznhBWs
 
 ---
 
 # 使い方
 
-勉強会用の LINE BOT ソースコード です。
-今回は、codenvy(cloud IDE)と、heroku(PaaS)を使用して開発します。
-所要時間は、慣れた人なら10min程度です
+勉強会用の LINE BOT ソースコード です。  
+今回は、codenvy(cloud IDE)と、heroku(PaaS)を使用して開発します。  
+所要時間は、慣れた人なら10min程度です。  
 
 ---
 
 # 完成イメージ
 <ul>
   <li>
-  今回作成するのは、自動で応答してくれるLINE BOTです</br>
+  今回作成するのは、自動で応答してくれるLINE BOTです  
   <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/sample_image.gif" height="320px">
   </li>
   <li>
-  データベースに接続するとクイズだって作れます</br>
+  データベースに接続するとクイズだって作れます  
   <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/quiz-dayo.gif" height="420px">
   </li>
 </ul>
@@ -34,47 +36,47 @@ https://youtu.be/aByTfznhBWs
 
 # 必要なアカウント
 
-下記のソフトウェアとアカウントが必要なので、事前に取得しておいてください
+下記のソフトウェアとアカウントが必要なので、事前に取得しておいてください  
 
 - Googleアカウント
 
-  アカウントがあると各種ログインが簡単になります<br>
+  アカウントがあると各種ログインが簡単になります  
   https://accounts.google.com/
 
 - Chromeブラウザ
-  ブラウザはChromeを利用してください<br>
+  ブラウザはChromeを利用してください  
   https://www.google.com/intl/ja_ALL/chrome/
 
 - codenvyアカウント
-  cloud IDEです
+  cloud IDEです  
   https://codenvy.io/site/login
 
 - Herokuアカウント
-  サーバーはherokuを利用します<br>
+  サーバーはherokuを利用します  
   https://id.heroku.com/login
 
 - LINEアカウント
-  LINE Messaging API利用登録<br>
+  LINE Messaging API利用登録  
   https://developers.line.me/ja/
 
 ---
 
 ## LINE Developer Consoleでの作業
 
-一斉メッセージの設定などができる画面
-https://admin-official.line.me
+- LINE Developers
+https://developers.line.biz/ja/
 
-  ### LINEでの作業
-  - プロバイダ追加する
-  - チャネル追加する
-  - LINE_CHANNEL_SECRETの取得
-  - LINE_CHANNEL_ACCESS_TOKENの取得
-  - Webhook送信 利用するに設定
-  - Webhook URLをセットする(後述)
+### LINEでの作業
+- プロバイダ追加する
+- チャネル追加する
+- LINE_CHANNEL_SECRET の取得
+- LINE_CHANNEL_ACCESS_TOKEN の取得
+- Webhook送信 利用するに設定
+- Webhook URLをセットする(後述)
 
 ---
 
-## Codenvy
+## Codenvyでの作業
 
 #### STEP-1 ワークスペース作成
 
@@ -92,6 +94,7 @@ https://admin-official.line.me
   ```
   https://github.com/x-hack-git/line-messaging-api.git
   ```
+  - 貼り付けたら「Create」を実行します
 
 #### STEP-4 ターミナルでの作業
 
@@ -99,7 +102,6 @@ https://admin-official.line.me
   ```
   $ curl https://cli-assets.heroku.com/install.sh | sh
   $ cd line-messaging-api  
-
   ```
 
   2. emailアドレスとpasswordでherokuサービスにログインします
@@ -122,6 +124,13 @@ https://admin-official.line.me
   ```
   $ sh git.sh
   ```
+
+## Herokuでの作業
+
+- herokuダッシュボードでConfigをセットする
+
+  1. LINE_CHANNEL_SECRETのセット
+  2. LINE_CHANNEL_ACCESS_TOKENのセット
 
 ---
 
