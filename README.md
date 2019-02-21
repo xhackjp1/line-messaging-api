@@ -23,11 +23,11 @@ https://youtu.be/aByTfznhBWs
 # 完成イメージ
 <ul>
   <li>
-  今回作成するのは、自動で応答してくれるLINE BOTです  
+  今回作成するのは、自動で応答してくれるLINE BOTです<br>
   <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/sample_image.gif" height="320px">
   </li>
   <li>
-  データベースに接続するとクイズだって作れます  
+  データベースに接続するとクイズだって作れます<br>
   <img src="https://github.com/x-hack-git/line-messaging-api/blob/master/image/quiz-dayo.gif" height="420px">
   </li>
 </ul>
