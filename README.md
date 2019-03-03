@@ -144,5 +144,8 @@ https://developers.line.biz/ja/
 $ heroku config:set WEATHER_API_KEY=""
 ```
 
+### ぐるなびAPI
+https://api.gnavi.co.jp/api/tools/?apitype=RestSearchAPI
+
 ### アンケート
 https://docs.google.com/forms/d/13tuqpEKT9VVqTSwZB5ml_kAYfDo0UH63VWIT9eBbob0
